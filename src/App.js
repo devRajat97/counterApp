@@ -1,12 +1,19 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { increment , decrement,amount, reset} from "../src/utils/counter/counterSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getuser } from "./utils/users/userSlice";
+import { getuserList } from "./utils/users/userSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.counter.value);
-  const [inputAmount , setInputAmount]=useState(0)
+  const value = useSelector((state) => state.counter.value);  
+  const [inputAmount , setInputAmount]=useState(0)  
+
+useEffect(()=>{
+  dispatch(getuserList())
+},[])
+
 console.log(inputAmount)
 
   const handleIncrement = () => {
